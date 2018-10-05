@@ -307,19 +307,26 @@ P_{i,k}=P(C_k|f_{p_i})=PBT(CIELab_c_img)
 # ======================================================================
 # 4.2 Reflectance Labeling
 
-# C_k: cluster
+# C_k: k-th cluster
+
 # f_{p_i}: sample
+
+# c P_{i,k}: when sample f_{p_i} is given, 
+# conditional probability of ocurring k-th cluster C_k
 # P_{i,k}=P(C_k|f_{p_i})
 
 # Eq 11
 
-# c phi: reflectance label of pixel p_i
-phi
+# c phi[i]: reflectance label of pixel i
+phi[i]
 
 # c e_u_temp: energy unary temp
 e_u_temp=0
 
+# c one_p: one pixel
 for one_p in all_pixels:
+    # When sample f_{one_p} of pixel i is given,
+    # conditional probability of ocurring phi[one_p]-t label cluster
     e_u+=log{P(C_{phi[one_p]}|f_{one_p})}
 
 # c e_u: energy unary
@@ -327,18 +334,31 @@ e_u=-e_u_temp
 
 # Eq 12, Eq 13, Eq 14
 e_pair=0
-for o_pixel in all_pixels:
-    for o_neighbor in all_neighbors:
-        if phi[o_pixel]!=phi[o_neighbor]:
+for one_p in all_pixels:
+    for one_n in all_neighbors:
+        if phi[one_p]!=phi[one_n]:
             tau=1
         else:
             tau=0
-        f[o_pixel]=[k*l,a[o_pixel],b[o_pixel]].t
-        f[o_neighbor]=[k*l,a[o_neighbor],b[o_neighbor]].t
-        upper_t=sq(L2_norm(f[o_pixel]-f[o_neighbor]))
-        lower_t=2*sq(sigma)
-        w[o_pixel][o_neighbor]=exp(-upper_t/lower_t)
-        e_pair+=w[o_pixel][o_neighbor]*tau
+
+        # c f[one_p]: Center pixel CIELab value
+        f[one_p]=[k*l,a[one_p],b[one_p]].t
+        
+        # c f[one_n]: Neighbor pixel CIELab value
+        f[one_n]=[k*l,a[one_n],b[one_n]].t
+
+        # c up_t_eq13: upper term of Eq 13
+        up_t_eq13=sq(L2_norm(f[one_p]-f[one_n]))
+
+        # c lo_t_eq13: lower term of Eq 13
+        lo_t_eq13=2*sq(sigma)
+
+        # c w[one_p][one_n]: Eq 13
+        w[one_p][one_n]=exp(-up_t_eq13/lo_t_eq13)
+
+        eq12=w[one_p][one_n]*tau
+        
+        e_pair+=eq12
 
 crf_e=e_u+gamma*e_pair
 
