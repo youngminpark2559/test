@@ -126,9 +126,9 @@ L_mat=
 
 
 
-L_mat: (3*n,3*8)
-L_mat.T: (3*8,3*n)
-z: (3*n,1)
+# L_mat: (3*n,3*8)
+# L_mat.T: (3*8,3*n)
+# z: (3*n,1)
 E_l=l1_norm(mat_mul(L_mat.T,z))
 
 
