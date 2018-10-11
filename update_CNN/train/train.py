@@ -129,13 +129,14 @@ def train():
                 # o_p_ref = cv2.normalize(o_p_ref, None, alpha=0.01, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
 
                 # o_p_ref=Variable(torch.Tensor(o_p_ref))
-
-                # o_prir=prir[o_batch,:,:,:].detach().cpu().numpy()
-                # o_prir=resize(o_prir,(1,ori_img_s[0],ori_img_s[1]), order=1, preserve_range=True)
+                
+                # Resize predicted image to original size before passing them to loss function
+                o_prir=prir[o_batch,:,:,:].detach().cpu().numpy()
+                o_p_ref=resize(o_prir,(1,ori_img_s[0],ori_img_s[1]), order=1, preserve_range=True)
 
                 # o_p_ref=Variable(torch.Tensor(o_prir))
 
-                o_p_ref=prir[o_batch,:,:,:]
+                # o_p_ref=prir[o_batch,:,:,:]
 
 
                 # c o_gt: one GT json file for above predicted reflectance image
