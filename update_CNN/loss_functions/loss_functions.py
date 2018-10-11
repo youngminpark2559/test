@@ -74,13 +74,17 @@ def eval_single_comparison_with_SVM_hinge_loss(o_p_ref,comparisons,hrjf,ori_img_
 
     # print("ori_img_s",ori_img_s)
     # ori_img_s (341, 512, 3)
-
+    
+    # Let's not resize predictions not to break link of backprop graph
+    # Resize predictions before using loss function
     # c refl_img: one predicted reflectance image
-    o_p_ref=o_p_ref.detach().cpu().numpy()
-    refl_img=resize(o_p_ref,(1,ori_img_s[0],ori_img_s[1]), order=1, preserve_range=True)
+    # o_p_ref=o_p_ref.detach().cpu().numpy()
+    # refl_img=resize(o_p_ref,(1,ori_img_s[0],ori_img_s[1]), order=1, preserve_range=True)
     # print("refl_img p",refl_img.shape) # 
     # refl_img p (512, 3, 224)
-
+    
+    refl_img=o_p_ref
+    
     # H and W of predicted reflectance image
     rows,cols=refl_img.shape[1:3]
     # print("rows,cols",rows,cols) # 224, 224
