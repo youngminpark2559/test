@@ -83,8 +83,8 @@ def GradientBoostingClassifier(img):
     plt.imshow(re_dd,cmap="gray")
     plt.show()
     
-    # /mnt/1T-5e7/0008_ref_bi_20_22_dtf_50_50.png
-    # /mnt/1T-5e7/captured_pic/ICMoon-advance/GradientBoostingClassifier_on_ref_img.png
+    # https://raw.githubusercontent.com/youngminpark2559/test/master/boostings/gradient_b/pics/0008_ref_bi_20_22_dtf_50_50.png
+    # https://raw.githubusercontent.com/youngminpark2559/test/master/boostings/gradient_b/pics/GradientBoostingClassifier_on_ref_img.png
 
 
 img_path="/mnt/1T-5e7/0008_ref_bi_20_22_dtf_50_50.png"
