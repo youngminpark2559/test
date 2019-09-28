@@ -242,4 +242,5 @@ plt.xlabel("Training epoch")
 plt.ylabel("Loss value")
 plt.plot(loss_values_list)
 plt.savefig("./loss_graph.png")
+# https://github.com/youngminpark2559/test/blob/master/add_new_fc_layers_using_tensorflow/pics/loss_graph.png
 plt.show()
