@@ -1,4 +1,6 @@
-source=[1,1,0]
+source=[0,1,1] # Success
+# source=[1,0,1] # Success
+# source=[1,1,0] # Fail, but why?
 print("source",source)
 
 result_li=[]
