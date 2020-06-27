@@ -66,7 +66,7 @@ print("result_li",result_li)
 # This is failure for the purpose, but why did this fail?
 # It's because the range of indexing is between 0 to 1 from source list
 # So if the source list is [1,1,0], you are only able to use [1,1] from the list of [1,1,0]
-# Or if you don't use source list [1,1,0], you also can use indexing number combination itself such as "i,k,j 0 0 0" to "i,k,j 1 1 1"
+# Or if you don't use source list [1,1,0], you also can use indexing number combination itself such as from "i,k,j 0 0 0" to "i,k,j 1 1 1"
 
 # source [1, 1, 0]
 # i,k,j 0 0 0
