@@ -87,3 +87,27 @@ print("result_li",result_li)
 # source[i],source[k],source[j] 1 1 1
 # result_li [[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]
 
+
+
+
+
+
+
+# Monte Carlo method?
+import numpy as np
+
+list_temp=[]
+final_temp=[]
+while True:
+  rand_num1=np.random.randint(0,2)
+  rand_num2=np.random.randint(0,2)
+  rand_num3=np.random.randint(0,2)
+  rand_list=[rand_num1,rand_num2,rand_num3]
+  list_temp.append(rand_list)
+
+  if len(list(set(tuple(i) for i in list_temp)))==8: # The number of possibile combination from "0,1" to create 3 digits with allowed duplicates is calculated by 2*2*2=8
+    
+    final_temp.append(list(set(tuple(i) for i in list_temp)))
+    break
+# print("final_temp",final_temp)
+# final_temp [[(1, 1, 0), (0, 1, 1), (1, 1, 1), (1, 0, 0), (0, 0, 1), (1, 0, 1), (0, 0, 0), (0, 1, 0)]]
